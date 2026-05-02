@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-dark-900 text-white font-sans antialiased;
+    background: #0a0a1a;
+  }
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-dark-800;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary-600 rounded-full;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold
+           bg-gradient-to-r from-primary-500 to-primary-600 text-white
+           hover:from-primary-400 hover:to-primary-500
+           transition-all duration-200 shadow-glow-sm hover:shadow-glow
+           active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold
+           border border-primary-500/40 text-primary-400
+           hover:bg-primary-500/10 hover:border-primary-400
+           transition-all duration-200 active:scale-95;
+  }
+  .btn-danger {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold
+           bg-gradient-to-r from-red-600 to-red-700 text-white
+           hover:from-red-500 hover:to-red-600
+           transition-all duration-200 active:scale-95;
+  }
+  .card {
+    @apply bg-dark-800/80 border border-white/5 rounded-2xl backdrop-blur-sm
+           shadow-card hover:shadow-card-hover transition-all duration-300;
+  }
+  .glass {
+    @apply bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl;
+  }
+  .input {
+    @apply w-full px-4 py-3 rounded-xl bg-dark-700 border border-white/10
+           text-white placeholder-gray-500 outline-none
+           focus:border-primary-500 focus:ring-1 focus:ring-primary-500/30
+           transition-all duration-200 text-sm;
+  }
+  .label {
+    @apply block text-sm font-medium text-gray-400 mb-1.5;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold;
+  }
+  .badge-green {
+    @apply badge bg-green-500/15 text-green-400 border border-green-500/20;
+  }
+  .badge-yellow {
+    @apply badge bg-yellow-500/15 text-yellow-400 border border-yellow-500/20;
+  }
+  .badge-blue {
+    @apply badge bg-primary-500/15 text-primary-400 border border-primary-500/20;
+  }
+  .badge-red {
+    @apply badge bg-red-500/15 text-red-400 border border-red-500/20;
+  }
+  .section-title {
+    @apply text-3xl md:text-4xl font-display font-bold text-white;
+  }
+  .section-subtitle {
+    @apply text-gray-400 text-lg mt-3 max-w-2xl mx-auto;
+  }
+  .stat-card {
+    @apply card p-6 flex items-center gap-4;
+  }
+  .nav-link {
+    @apply text-gray-400 hover:text-white transition-colors duration-200 text-sm font-medium;
+  }
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400
+           hover:bg-primary-500/10 hover:text-primary-400
+           transition-all duration-200 text-sm font-medium cursor-pointer;
+  }
+  .sidebar-link.active {
+    @apply bg-primary-500/15 text-primary-400 border border-primary-500/20;
+  }
+  .table-header {
+    @apply text-xs font-semibold text-gray-500 uppercase tracking-wider px-4 py-3;
+  }
+  .table-cell {
+    @apply px-4 py-4 text-sm text-gray-300;
+  }
+  .shimmer {
+    background: linear-gradient(90deg, transparent 25%, rgba(255,255,255,0.05) 50%, transparent 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+/* Custom gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #6171f6 0%, #ec4899 50%, #f472b6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow background orbs */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+/* Animated border */
+.border-animated {
+  position: relative;
+}
+.border-animated::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #6171f6, #ec4899, #6171f6);
+  background-size: 200% 200%;
+  animation: borderRotate 3s ease infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+@keyframes borderRotate {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
